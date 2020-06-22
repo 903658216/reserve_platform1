@@ -1,0 +1,13 @@
+logging:
+  config: classpath:log4j2.xml
+server:
+  port: 8080
+spring:
+  application:
+    name: micro-system
+  thymeleaf:
+    cache: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:20001/eureka
