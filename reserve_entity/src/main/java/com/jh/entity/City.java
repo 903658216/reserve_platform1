@@ -17,7 +17,7 @@ public class City implements Serializable {
     private Integer id;
     private String cityName;
     private String cityPinyin;
-    private Integer hotalNumber;
+    private Integer hotelNumber;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     private Integer status;

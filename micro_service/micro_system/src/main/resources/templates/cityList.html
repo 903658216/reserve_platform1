@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <base th:href="${#request.getContextPath() + '/'}"/>
     <meta charset="UTF-8">
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,11 +29,11 @@
         </tr>
     </thead>
     <tbody>
-        <tr th:each="c : ${cityList.data}" >
+        <tr th:each="c : ${cityList}" >
             <td th:text="${c.id}">编号</td>
             <td th:text="${c.cityName}">城市名称</td>
             <td th:text="${c.cityPinyin}">城市拼音</td>
-            <td th:text="${c.hotalNumber}">酒店数量</td>
+            <td th:text="${c.hotelNumber}">酒店数量</td>
             <td th:text="${#dates.format(c.createTime,'yyyy-MM-dd HH:mm:ss')}">创建时间</td>
             <td th:text="${c.status}">状态</td>
             <td >

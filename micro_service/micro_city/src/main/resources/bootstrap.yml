@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:40000
+      name: eureka,city,datasource,log4j
+      profile: local

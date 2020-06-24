@@ -58,7 +58,7 @@ public class CitySysController {
         log.info("调用服务返回结果：" + cityList);
         if (cityList.getCode() == ResultData.Code.OK){
             model.setViewName("cityList");
-            model.addObject("cityList",cityList);
+            model.addObject("cityList",cityList.getData());
             return model;
         }else{
 

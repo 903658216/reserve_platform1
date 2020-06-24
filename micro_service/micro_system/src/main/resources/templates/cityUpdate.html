@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <base th:href="${#request.getContextPath() + '/'}"/>
     <meta charset="UTF-8">
     <title>城市修改</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +19,7 @@
         城市编号：<input type="text" name="id" readonly="readonly" th:value="${city.id}"/><br/>
         城市名称：<input type="text" name="cityName" th:value="${city.cityName}"/><br/>
         城市拼音：<input type="text" name="cityPinyin" th:value="${city.cityPinyin}"/><br/>
-        酒店数量：<input type="text" name="hotalNumber" readonly="readonly" th:value="${city.hotalNumber}"/><br/>
+        酒店数量：<input type="text" name="hotelNumber" readonly="readonly" th:value="${city.hotelNumber}"/><br/>
         创建时间：<input type="text" name="createTime" readonly="readonly" th:value="${#dates.format(city.createTime,'yyyy-MM-dd HH:mm:ss')}"/><br/>
         状态：<input type="text" name="status" th:value="${city.status}"/><br/>
         <button type="submit">提交</button>

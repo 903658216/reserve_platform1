@@ -5,6 +5,7 @@ import com.jh.entity.ResultData;
 import com.jh.service.ICityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -74,6 +75,15 @@ public class CityController {
     @RequestMapping("/cityDeleteById")
     public ResultData<Boolean> cityDeleteById(@RequestBody Integer id){
         boolean flag = cityService.removeById(id);
+        return new ResultData<Boolean>().setData(flag);
+
+    }
+
+    @RequestMapping("/cityUpdateHoterNumberById/{cId}/{number}")
+    ResultData<Boolean> cityUpdateHoterNumberById(@PathVariable Integer cId, @PathVariable Integer number){
+
+        System.out.println("城市微服务接到的城市id和添加数量"+cId+","+number);
+        boolean flag = cityService.updateHotelNumById(cId,number);
         return new ResultData<Boolean>().setData(flag);
 
     }

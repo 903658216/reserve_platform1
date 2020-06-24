@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:40000
+      name: eureka,gateway
+      profile: local
+
+

@@ -15,20 +15,20 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class Hotal implements Serializable {
+public class Hotel implements Serializable {
 
   private static final long serialVersionUID = 1235408809149439232L;
 
   @TableId(type = IdType.AUTO)
   private Integer id;
 
-  private String hotalName;
+  private String hotelName;
 
-  private String hotalImage;
+  private String hotelImage;
 
   private Integer type;
 
-  private String hotalInfo;
+  private String hotelInfo;
 
   private String keyword;
 
@@ -47,7 +47,7 @@ public class Hotal implements Serializable {
 
   private Integer cid;
 
-  private String distrct;
+  private String district;
 
   private Date createTime = new Date();
   private Integer status;
