@@ -39,7 +39,7 @@ public class Room implements Serializable {
 
   private BigDecimal price;
 
-  private BigDecimal dufaultPrice;
+  private BigDecimal defaultPrice;
 
   private Integer status;
 

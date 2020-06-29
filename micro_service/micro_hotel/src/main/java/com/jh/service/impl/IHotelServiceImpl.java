@@ -1,7 +1,7 @@
 package com.jh.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.jh.dao.Hotelmapper;
+import com.jh.dao.HotelMapper;
 import com.jh.entity.Hotel;
 import com.jh.feign.CityFeign;
 import com.jh.service.IHotelService;
@@ -11,10 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-public class IHotelServiceImpl extends ServiceImpl<Hotelmapper, Hotel> implements IHotelService {
+public class IHotelServiceImpl extends ServiceImpl<HotelMapper, Hotel> implements IHotelService {
 
     @Autowired
-    private Hotelmapper hotelmapper;
+    private HotelMapper hotelmapper;
 
     @Autowired
     private CityFeign cityFeign;
@@ -50,5 +50,8 @@ public class IHotelServiceImpl extends ServiceImpl<Hotelmapper, Hotel> implement
         boolean flag = super.removeById(id);
         return flag;
     }
+
+
+
 
 }

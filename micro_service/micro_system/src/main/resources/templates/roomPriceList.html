@@ -3,7 +3,7 @@
 <head>
     <base th:href="${#request.getContextPath() + '/'}"/>
     <meta charset="UTF-8">
-    <title>城市列表页面</title>
+    <title>客房价格展示页面</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -15,39 +15,45 @@
 </head>
 <body>
 
-<table class="table table-striped table-bordered table-hover table-condensed">
-    <caption>城市列表</caption>
-    <thead>
+
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <caption>客房价格列表</caption>
+        <thead>
         <tr>
             <th>编号</th>
-            <th>城市名称</th>
-            <th>城市拼音</th>
-            <th>酒店数量</th>
-            <th>创建时间</th>
-            <th>状态</th>
-            <th>操作</th>
+            <th>客房编号</th>
+            <th>日期</th>
+            <th>价格</th>
+            <th>类型</th>
+            <th>已预约数量</th>
+            <th>剩余数量</th>
+            <th >操作</th>
         </tr>
-    </thead>
-    <tbody>
-        <tr th:each="c : ${cityList}" >
-            <td th:text="${c.id}">编号</td>
-            <td th:text="${c.cityName}">城市名称</td>
-            <td th:text="${c.cityPinyin}">城市拼音</td>
-            <td th:text="${c.hotelNumber}">酒店数量</td>
-            <td th:text="${#dates.format(c.createTime,'yyyy-MM-dd HH:mm:ss')}">创建时间</td>
-            <td th:text="${c.status}">状态</td>
+        </thead>
+        <tbody>
+        <tr th:each="rp : ${roomPriceList}" >
+            <td th:text="${rp.id}">编号</td>
+            <td th:text="${rp.rid}">客房编号</td>
+            <td th:text="${#dates.format(rp.date,'yyyy-MM-dd')}">日期</td>
+            <td th:text="${rp.price}">价格</td>
+            <td th:if="${rp.type eq 1}" th:text="特价">类型</td>
+            <td th:if="${rp.type eq 0}" th:text="普通">类型</td>
+            <td th:text="${rp.number}">已预约数量</td>
+            <td th:text="${rp.hasNumber}">剩余数量</td>
             <td >
-                <a th:href="|/citySystem/toCityUpdate?id=${c.id}|">修改</a>
-                <a th:href="|/citySystem/cityDeleteById?id=${c.id}|">删除</a>
+                <a th:href="|/hotelSystem/toUpdateRoomPriceByRPid?id=${rp.id}|">修改</a>
+<!--                <a th:href="|/hotelSystem/deleteRoomPriceByRPid?id=${rp.id}|">删除</a>-->
             </td>
         </tr>
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>

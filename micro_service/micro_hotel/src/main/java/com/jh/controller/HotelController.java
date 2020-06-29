@@ -3,7 +3,6 @@ package com.jh.controller;
 
 import com.jh.entity.Hotel;
 import com.jh.entity.ResultData;
-import com.jh.entity.Room;
 import com.jh.service.IHotelService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,8 +51,8 @@ public class HotelController {
      * @param id
      * @return
      */
-    @RequestMapping("/seleteHotelById")
-    ResultData<Hotel> seleteHotelById(@RequestBody Integer id){
+    @RequestMapping("/selectHotelById")
+    ResultData<Hotel> selectHotelById(@RequestBody Integer id){
 
         Hotel hotel = iHotelService.getById(id);
         return new  ResultData<Hotel>().setData(hotel);
@@ -83,13 +82,9 @@ public class HotelController {
         return new ResultData<Boolean>().setData(flag);
     }
 
-    @RequestMapping("/hotel/selectRoomByHid")
-    ResultData<List<Room>> selectRoomByHid(@RequestParam Integer id){
 
 
-//        List<Room> roomList = iHotelService.
-        return null;
-    }
+
 
 
 }

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>客房修改页面</title>
+</head>
+<body>
+
+<form action="/hotelSystem/hotelRoomAdd1111" method="post" enctype="multipart/form-data">
+    客房编号：<input name="title"/><br/>
+    所属酒店：<input name="title"/><br/>
+    客房名称：<input name="title"/><br/>
+    客房面积：<input name="area"/><br/>
+    可容纳人数：<input name="num"/><br/>
+    客房图片：<input type="file" name="image1" /><br/>
+    客房详情：<textarea name="info" th:cols="20" th:rows="4"></textarea><br/>
+    客房床型：<input name="bed"/><br/>
+    客房数量：<input name="number"/><br/>
+    客房默认价格：<input name="defaultPrice"/><br/>
+    <button type="submit">提交</button>
+</form>
+
+</body>
+</html>

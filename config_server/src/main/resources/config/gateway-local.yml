@@ -13,7 +13,7 @@ spring:
         - id: hotel
           uri: lb://micro-hotel
           predicates:
-            - Path=/hotel/**
+            - Path=/hotel/**,/room/**
         - id: system
           uri: lb://micro-system
           predicates:

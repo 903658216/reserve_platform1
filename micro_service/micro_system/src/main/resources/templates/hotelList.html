@@ -43,9 +43,10 @@
         <td th:text="${#dates.format(h.openTime,'yyyy-MM-dd')}">开业时间</td>
         <td th:cols="3">
 <!--            <a th:href="|/citySystem/toCityUpdate?id=${c.id}|">修改</a>-->
-            <a th:href="|/hotelSystem/toUpdateHotel?id=${h.id}|">修改</a>
-            <a th:href="|/hotelSystem/deleteHotelById?id=${h.id}|">删除</a>
-            <a th:href="|/hotelSystem/selectHotelRTById?id=${h.id}|">客房管理</a>
+            <a th:href="|/hotelSystem/toUpdateHotel?id=${h.id}|">修改酒店</a>
+            <a th:href="|/hotelSystem/deleteHotelById?id=${h.id}|">删除酒店</a>
+            <a th:href="|/hotelSystem/toHotelRoomById?id=${h.id}|">添加客房类型</a>
+            <a th:href="|/hotelSystem/selectHotelRoomListByHid?hid=${h.id}|">管理客房列表</a>
         </td>
     </tr>
     </tbody>

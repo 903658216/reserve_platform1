@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改客房的价格</title>
+</head>
+<body>
+    <h1>修改客房价格</h1>
+    <form method="post" action="/hotelSystem/updateRoomPriceById">
+        编号:<input type="text" name="id" th:value="${roomPrice.id}" readonly="readonly"/><br/>
+        客房编号:<input type="text" name="rid" th:value="${roomPrice.rid}" readonly="readonly"/><br/>
+        日期:<input type="text" name="id" th:value="${#dates.format(roomPrice.date,'yyyy-MM-dd')}" readonly="readonly" /><br/>
+        价格:<input type="text" name="price" th:value="${roomPrice.price}"/><br/>
+        类型:<input name="type" type="radio" th:checked="${roomPrice.type eq 0}" value="0"/>普通 <input name="type" type="radio" th:checked="${roomPrice.type eq 1}" value="1"/>特价<br/>
+        已预约数量:<input type="text" name="number" th:value="${roomPrice.number}" /><br/>
+        剩余数量:<input type="text" name="hasNumber"  th:value="${roomPrice.hasNumber}" /><br/>
+        <button  type="submit">提交</button>
+    </form>
+    <
+</body>
+</html>
