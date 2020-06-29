@@ -47,4 +47,7 @@ public interface HotelFeign {
 
     @RequestMapping("/room/selectHotelRoomByRId")
     ResultData<Room> selectHotelRoomByRId(@RequestBody Integer rid);
+
+    @RequestMapping("/room/updateHotelRoomByRId")
+    ResultData<Boolean> updateHotelRoomByRId(@RequestBody Room room);
 }

@@ -6,9 +6,9 @@ import com.jh.feign.CityFeign;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -40,9 +40,9 @@ public class CitySysController {
         ResultData<Boolean> flag = cityFeign.citySave(city);
         log.info("调用服务返回结果：" + flag);
         if (flag.getCode() == ResultData.Code.OK){
-            return "succ";
+            return "redirect:/citySystem/toCityList";
         }
-        return "cityerror";
+        return "error";
     }
 
     /**
@@ -50,20 +50,17 @@ public class CitySysController {
      * @return
      */
     @RequestMapping("/toCityList")
-    public ModelAndView toCityList(){
+    public String toCityList(Model model){
 
-        ModelAndView model = new ModelAndView();
         //调用城市服务，添加城市数据
         ResultData<List<City>> cityList = cityFeign.cityList();
         log.info("调用服务返回结果：" + cityList);
         if (cityList.getCode() == ResultData.Code.OK){
-            model.setViewName("cityList");
-            model.addObject("cityList",cityList.getData());
-            return model;
+            model.addAttribute("cityList",cityList.getData());
+            return "cityList";
         }else{
 
-            model.setViewName("cityerror");
-            return model;
+            return "error";
         }
     }
 
@@ -73,23 +70,18 @@ public class CitySysController {
      * @return
      */
     @RequestMapping("/toCityUpdate")
-    public ModelAndView toCityUpdate(@RequestParam String id){
+    public String toCityUpdate(@RequestParam String id, Model model){
 
 
-        ModelAndView model = new ModelAndView();
         //调用城市服务，查询城市的信息
         ResultData<City> city = cityFeign.selectCityById(Integer.valueOf(id));
         log.info("调用服务返回结果：" + city);
         if (city.getCode() == ResultData.Code.OK){
-            model.setViewName("cityUpdate");
-            model.addObject("city",city.getData());
-            return model;
-        }else{
-
-            model.setViewName("cityerror");
-            return model;
+            model.addAttribute("city",city.getData());
+            return "cityUpdate";
         }
 
+        return "error";
     }
 
     /**
@@ -107,7 +99,7 @@ public class CitySysController {
             return "redirect:/citySystem/toCityList";
         }else{
 
-            return "cityerror";
+            return "error";
         }
 
     }
@@ -126,7 +118,7 @@ public class CitySysController {
         if (flag.getCode() == ResultData.Code.OK){
             return "redirect:/citySystem/toCityList";
         }
-        return "cityerror";
+        return "error";
 
     }
 

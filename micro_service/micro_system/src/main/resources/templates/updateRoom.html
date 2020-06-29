@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <base th:href="${#request.getContextPath() + '/'}"/>
     <meta charset="UTF-8">
     <title>客房修改页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 可选的Bootstrap主题文件（一般不使用） -->
+    <!--    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>-->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <h1>修改客房信息</h1>
+    <form action="/hotelSystem/roomUpdateById" method="post" enctype="multipart/form-data">
+        客房编号：<input name="id" th:value="${room.id}" readonly="readonly"/><br/>
+        所属酒店：<input type="hidden" name="hid"  th:value="${room.hid}" />
+        <input  th:each="h : ${hotelList}" th:if="${h.id eq room.hid}" th:value="${h.hotelName}"  readonly="readonly"/><br/>
+        客房名称：<input name="title" th:value="${room.title}"/><br/>
+        客房面积：<input name="area" th:value="${room.area}"/><br/>
+        可容纳人数：<input name="num" th:value="${room.num}"/><br/>
+        客房图片：<img style="width: 120px; height: 90px" th:src="|/hotelSystem/getImage?path=${room.image}|"/><input type="file" name="image1" /><br/>
+        客房详情：<textarea name="info" th:cols="20" th:rows="4" th:text="${room.info}"></textarea><br/>
+        客房床型：<input name="bed" th:value="${room.bed}"/><br/>
+        客房数量：<input name="number" th:value="${room.number}"/><br/>
+        客房默认价格：<input name="defaultPrice" th:value="${room.defaultPrice}" readonly="readonly "/><br/>
+        <button type="submit">提交</button>
+    </form>
 
-<form action="/hotelSystem/hotelRoomAdd1111" method="post" enctype="multipart/form-data">
-    客房编号：<input name="title"/><br/>
-    所属酒店：<input name="title"/><br/>
-    客房名称：<input name="title"/><br/>
-    客房面积：<input name="area"/><br/>
-    可容纳人数：<input name="num"/><br/>
-    客房图片：<input type="file" name="image1" /><br/>
-    客房详情：<textarea name="info" th:cols="20" th:rows="4"></textarea><br/>
-    客房床型：<input name="bed"/><br/>
-    客房数量：<input name="number"/><br/>
-    客房默认价格：<input name="defaultPrice"/><br/>
-    <button type="submit">提交</button>
-</form>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 </html>

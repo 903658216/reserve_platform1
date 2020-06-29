@@ -101,4 +101,17 @@ public class RoomController {
         boolean flag = iRoomPriceService.updateById(roomPrice);
         return new ResultData<Boolean>().setData(flag);
     }
+
+
+    /**
+     * 根据客房编号修改客房信息
+     * @param room
+     * @return
+     */
+    @RequestMapping("/updateHotelRoomByRId")
+    ResultData<Boolean> updateHotelRoomByRId(@RequestBody Room room){
+
+        boolean flag = iRoomService.updateById(room);
+        return new ResultData<Boolean>().setData(flag);
+    }
 }
