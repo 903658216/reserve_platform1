@@ -326,18 +326,65 @@ public class HotelSysController {
 
         ResultData<Room> roomById = hotelFeign.selectHotelRoomByRId(rid);
         if (roomById.getCode() == ResultData.Code.OK){
-            log.info("成功返回客房修改页面");
+            log.info("成功返回客房修改页面"+roomById.getData());
+            ResultData<List<Hotel>> listResultData = hotelFeign.hotelList();
             model.addAttribute("room",roomById.getData());
+            model.addAttribute("hotelList",listResultData.getData());
             return "updateRoom";
         }
-
         return "error";
-
 
     }
 
     /**
-     * 跳转到价格展示列表
+     * 根据酒店客房的编号修改客房信息
+     * @param room
+     * @return
+     */
+    @RequestMapping("/roomUpdateById")
+    public String roomUpdateById(Room room,Model model,MultipartFile image1){
+
+        //如果修改了酒店客房图片
+        if (!image1.isEmpty()){
+            //处理上传的文件名
+            String fileName = UUID.randomUUID().toString();
+            File filePath = new File(UPLOAD_PATH);
+            if (!filePath.exists()){
+                filePath.mkdirs();
+            }
+
+            //根据父路径filePath创建子路径的文件fileName
+            File updateFile = new File(filePath,fileName);
+
+            //处理文件上传,jdk7的新特性，只要实现了Closeable接口的都可以将其创建的语句放到try的括号里面，它会替我们自动关闭资源
+            try (  InputStream in = image1.getInputStream();
+                   OutputStream out = new FileOutputStream(updateFile);
+            ){
+                //上传
+                IOUtils.copy(in,out);
+
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+
+            //设置图片的上传路径和图片文件名
+            room.setImage(updateFile.getAbsolutePath().replace("\\", "/"));
+        }
+
+
+        //未做默认价格改动之后的操作，默认不能改动
+        ResultData<Boolean> resultData = hotelFeign.updateHotelRoomByRId(room);
+        if (resultData.getCode() == ResultData.Code.OK){
+            log.info("成功修改客房信息");
+            //跳转到客房展示列表页面
+            return selectHotelRoomListByHid(room.getHid(),model);
+        }
+
+        return "error";
+    }
+
+    /**
+     * 跳转到客房未来30天价格展示列表
      * @param rid
      * @return
      */
@@ -346,7 +393,7 @@ public class HotelSysController {
 
         ResultData<List<RoomPrice>> roomPriceListByRid = hotelFeign.selectRoomPriceListByRid(rid);
         if (roomPriceListByRid.getCode() == ResultData.Code.OK){
-            log.info("成功返回客房价格展示页面");
+            log.info("成功返回客房未来30天价格展示列表"+roomPriceListByRid.getData());
             model.addAttribute("roomPriceList",roomPriceListByRid.getData());
             return "roomPriceList";
         }

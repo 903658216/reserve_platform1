@@ -1,0 +1,33 @@
+ribbon:
+  ConnectTimeout: 1000  #毫秒    连接超时时间
+  ReadTimeout: 6000    #毫秒      读超时时间
+  MaxAutoRetries: 0     # 对当前实例的最大重试次数
+  MaxAutoRetriesNextServer: 0     # 切换实例的最大重试次数(如果还失败就切换下
+feign:
+  hystrix:
+    enabled: true
+#Hystrix的相关配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          #资源隔离方法，THREAD：线程池隔离（默认值），SEMAPHORE：信号量隔离
+          strategy: THREAD
+          thread:
+            #调用的超时时间，默认1s
+            timeoutInMilliseconds: 6000
+        #是否开启Hystrix的超时，默认是开启，如果关闭了，Feign本身的超时仍然起作用
+        timeout:
+          enabled: true
+      #熔断器的配置，默认开启
+      circuitBreaker:
+        enabled: true
+        #单位时间内，使熔断器跳闸的最小异常请求（访问失败或者超时等）次数。如果失败的请求达到该值，则熔断器就会打开，默认值为20
+        requestVolumeThreshold: 2
+        #多久时间熔断器进入半开状态
+        sleepWindowInMilliseconds: 5000
+  #设置线程池隔离时，线程池大小，默认是10
+  threadpool:
+    default:
+      coreSize: 10

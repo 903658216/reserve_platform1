@@ -46,6 +46,11 @@
             <artifactId>reserve_feign</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.jh</groupId>
+            <artifactId>reserve_even</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
