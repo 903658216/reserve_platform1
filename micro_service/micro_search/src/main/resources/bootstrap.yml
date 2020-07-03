@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:40000
+      name: euraka,elastic,log4j,rabbitmq,myfeign
+      profile: local
+

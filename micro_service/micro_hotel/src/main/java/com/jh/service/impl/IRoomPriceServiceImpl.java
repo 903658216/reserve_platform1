@@ -1,9 +1,10 @@
 package com.jh.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.jh.dao.RoomMapper;
 import com.jh.dao.RoomPriceMapper;
 import com.jh.entity.RoomPrice;
+import com.jh.event.constant.EventConstant;
+import com.jh.event.util.EventUtil;
 import com.jh.service.IRoomPriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ public class IRoomPriceServiceImpl extends ServiceImpl<RoomPriceMapper, RoomPric
     @Autowired
     private RoomPriceMapper roomPriceMapper;
 
+    @Autowired
+    private EventUtil eventUtil;
+
     /**
      * 根据房间编号查询客房价格列表
      * @param rid
@@ -25,5 +29,19 @@ public class IRoomPriceServiceImpl extends ServiceImpl<RoomPriceMapper, RoomPric
     public List<RoomPrice> selectRoomPriceListByRid(Integer rid) {
 
         return roomPriceMapper.selectRoomPriceListByRid(rid);
+    }
+
+    /**
+     * 修改了酒店客房价格表的信息 -- 调整了价格
+     * @param roomPrice
+     * @return
+     */
+    @Override
+    public boolean updateById(RoomPrice roomPrice) {
+        boolean flag = super.updateById(roomPrice);
+
+        //发布一个修改酒店客房价格的事件
+        eventUtil.publishEvent(EventConstant.EVENT_HOTEL_ROOM_PRICE_UPDATE,roomPrice);
+        return flag;
     }
 }

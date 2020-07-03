@@ -18,7 +18,6 @@ import java.util.*;
 @Accessors(chain = true)
 public class HistoryPrice implements Serializable {
 
-  private static final long serialVersionUID = 1977241812406327808L;
 
   @TableId(type = IdType.AUTO)
   private Integer id;
