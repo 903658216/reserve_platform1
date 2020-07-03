@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jh.dao.RoomMapper;
 import com.jh.entity.Room;
 import com.jh.entity.RoomPrice;
+import com.jh.event.constant.EventConstant;
+import com.jh.event.util.EventUtil;
 import com.jh.service.IRoomPriceService;
 import com.jh.service.IRoomService;
 import com.jh.util.DateUtil;
@@ -24,8 +26,11 @@ public class IRoomServiceImpl extends ServiceImpl<RoomMapper, Room> implements I
     @Autowired
     private IRoomPriceService iRoomPriceService;
 
-    @Transactional
+    @Autowired
+    private EventUtil eventUtil;
+
     @Override
+    @Transactional
     public boolean save(Room room) {
 
         Boolean flag = super.save(room);
@@ -44,8 +49,16 @@ public class IRoomServiceImpl extends ServiceImpl<RoomMapper, Room> implements I
         }
 
         iRoomPriceService.saveBatch(roomPrices);
+        List<RoomPrice> roomPrices1 = iRoomPriceService.selectRoomPriceListByRid(room.getId());
+
+        room.setRoomPriceList(roomPrices1);
+
+        //发布新增酒店客房事件
+        eventUtil.publishEvent(EventConstant.EVENT_HOTEL_ROOM_INSERT,room);
         return flag;
     }
+
+
 
     /**
      * 根据酒店编号查询酒店客房类型列表
@@ -56,6 +69,7 @@ public class IRoomServiceImpl extends ServiceImpl<RoomMapper, Room> implements I
     public List<Room> selectRoomListByHid(Integer hid) {
 
         List<Room> roomList = roomMapper.selectRoomListByHid(hid);
+
         return roomList;
     }
 }

@@ -30,6 +30,7 @@ public class EventConsumerConfiguration {
     @Bean
     public Queue getQueue(){
 
+        //这里的队列的名称是微服务的名称加上-queue
         return new Queue(applicationName+"-queue",true,false,false);
     }
 

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>reserve_even</artifactId>
+    <artifactId>reserve_event</artifactId>
 
     <dependencies>
         <dependency>

@@ -10,7 +10,7 @@
         <module>reserve_log</module>
         <module>reserve_exception</module>
         <module>reserve_feign</module>
-        <module>reserve_even</module>
+        <module>reserve_event</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

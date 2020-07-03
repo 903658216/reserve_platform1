@@ -48,7 +48,7 @@
         </dependency>
         <dependency>
             <groupId>com.jh</groupId>
-            <artifactId>reserve_even</artifactId>
+            <artifactId>reserve_event</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

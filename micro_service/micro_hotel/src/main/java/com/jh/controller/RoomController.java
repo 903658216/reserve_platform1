@@ -25,7 +25,21 @@ public class RoomController {
     @Autowired
     private IRoomPriceService iRoomPriceService;
 
+    /**
+     * 根据客房类型编号查询酒店id
+     * @param rid 酒店客房类型编号
+     * @return  ResultData<Hotel>
+     */
+    @RequestMapping("/selectHotelIdByRoomId")
+    ResultData<Room> selectHotelIdByRoomId(@RequestBody Integer rid){
 
+        Room room = iRoomService.getById(rid);
+
+        return new ResultData<Room>().setData(room);
+
+
+
+    }
 
     /**
      * 添加酒店客房类型

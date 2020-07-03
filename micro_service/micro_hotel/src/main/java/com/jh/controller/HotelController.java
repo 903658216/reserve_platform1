@@ -1,6 +1,7 @@
 package com.jh.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.jh.entity.Hotel;
 import com.jh.entity.ResultData;
 import com.jh.service.IHotelService;
@@ -81,6 +82,8 @@ public class HotelController {
         boolean flag = iHotelService.removeById(id);
         return new ResultData<Boolean>().setData(flag);
     }
+
+
 
 
 

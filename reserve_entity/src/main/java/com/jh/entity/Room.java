@@ -1,14 +1,20 @@
 package com.jh.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,31 +22,35 @@ import java.math.BigDecimal;
 @Accessors(chain = true)
 public class Room implements Serializable {
 
-  private static final long serialVersionUID = 1861381504265518080L;
 
   @TableId(type = IdType.AUTO)
+  @Field(type = FieldType.Integer)
   private Integer id;
-
+  @Field(type = FieldType.Integer)
   private Integer hid;
-
+  @Field(type = FieldType.Text,analyzer = "ik_max_word")
   private String title;
-
+  @Transient
   private String area;
-
+  @Transient
   private Integer num;
-
+  @Transient
   private String image;
-
+  @Field(type = FieldType.Text,analyzer = "ik_max_word")
   private String info;
-
+  @Transient
   private String bed;
-
+  @Field(type = FieldType.Integer)
   private Integer number;
-
+  @Transient
   private BigDecimal price;
-
+  @Transient
   private BigDecimal defaultPrice;
-
+  @Transient
   private Integer status;
+
+  @TableField(exist = false)
+  @Field(type = FieldType.Nested)
+  private List<RoomPrice> roomPriceList = new ArrayList<>();
 
 }

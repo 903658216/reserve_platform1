@@ -47,6 +47,9 @@ class MicroSearchApplicationTests {
 
         //将数据库中的酒店数据同步到ES中
         iSearchService.syncDataBase();
+
+        //将数据库中的room表的数据同步到索引库中的酒店文档中
+//        iSearchService.insertRoom()
     }
 
 

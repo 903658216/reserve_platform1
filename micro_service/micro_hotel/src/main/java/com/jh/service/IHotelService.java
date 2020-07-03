@@ -12,4 +12,6 @@ public interface IHotelService extends IService<Hotel> {
     boolean removeById(Integer id);
 
 
+
+
 }

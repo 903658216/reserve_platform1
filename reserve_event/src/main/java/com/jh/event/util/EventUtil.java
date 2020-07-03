@@ -17,7 +17,6 @@ public class EventUtil {
      * @param msg
      */
     public void publishEvent(String eventType,Object msg){
-        rabbitTemplate.convertAndSend(EventConstant.EXCHANGE_NAME,EventConstant.EVENT_HOTEL_INSERT,msg);
+        rabbitTemplate.convertAndSend(EventConstant.EXCHANGE_NAME,eventType,msg);
     }
-
 }
