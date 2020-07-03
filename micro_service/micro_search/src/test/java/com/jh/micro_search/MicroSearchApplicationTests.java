@@ -60,6 +60,7 @@ class MicroSearchApplicationTests {
     void commandTest(){
 
 
+        System.out.println("______");
 
     }
 
